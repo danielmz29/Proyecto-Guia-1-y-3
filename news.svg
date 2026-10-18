@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="480" height="270">
+  <rect width="480" height="270" fill="#0f172a"/>
+  <rect x="90" y="40" width="300" height="170" rx="10" fill="#1e293b" stroke="#334155" stroke-width="3"/>
+  <rect x="104" y="54" width="272" height="142" rx="4" fill="#0b1220"/>
+  <g font-family="monospace" font-size="13">
+    <text x="116" y="80"><tspan fill="#60a5fa">function</tspan><tspan fill="#e5e7eb">&#160;greet() {</tspan></text>
+    <text x="130" y="102"><tspan fill="#34d399">console</tspan><tspan fill="#e5e7eb">.log("Hello!");</tspan></text>
+    <text x="116" y="124" fill="#e5e7eb">}</text>
+    <text x="116" y="152" fill="#94a3b8">// AI suggests, you review</text>
+    <text x="116" y="174" fill="#fbbf24">&lt;main&gt;&lt;/main&gt;</text>
+  </g>
+  <path d="M60 220 H420 L400 240 H80 Z" fill="#334155"/>
+  <circle cx="404" cy="60" r="22" fill="#2563eb" opacity="0.3"/>
+  <text x="404" y="66" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#93c5fd" text-anchor="middle">AI</text>
+</svg>

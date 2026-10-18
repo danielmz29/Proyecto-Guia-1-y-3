@@ -1,125 +1,189 @@
-:root {
-  --bg: #f5f7fb;
-  --text: #1f2937;
-  --card: #ffffff;
-  --accent: #2563eb;
-  --header-bg: linear-gradient(135deg, #1e3a8a, #2563eb);
-}
-
-body.dark {
-  --bg: #0f172a;
-  --text: #e5e7eb;
-  --card: #1e293b;
-  --accent: #60a5fa;
-  --header-bg: linear-gradient(135deg, #020617, #1e3a8a);
-}
-
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   line-height: 1.6;
-  background: var(--bg);
-  color: var(--text);
-  transition: background 0.3s, color 0.3s;
+  background: #f3f5f9;
+  color: #1f2937;
 }
 
+/* ---------- Header and navigation ---------- */
 .site-header {
-  background: var(--header-bg);
+  background: linear-gradient(135deg, #0f172a, #1d4ed8);
   color: #fff;
-  text-align: center;
-  padding: 3rem 1rem;
+  padding: 1.5rem 1rem 0;
+}
+
+.brand {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-name {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.8;
 }
 
 .site-header h1 {
-  margin: 0 0 0.5rem;
-  font-size: 2.2rem;
+  margin: 0.2rem 0;
+  font-size: 1.7rem;
 }
 
-.subtitle {
+.tagline {
   margin: 0;
   opacity: 0.9;
 }
 
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+nav {
+  max-width: 1000px;
+  margin: 1.2rem auto 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+nav a {
+  display: block;
+  padding: 0.8rem 1.2rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px 8px 0 0;
+}
+
+nav a:hover,
+nav a:focus {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ---------- Layout: main + aside ---------- */
+.layout {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+  align-items: start;
 }
 
 section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+  scroll-margin-top: 1rem;
 }
 
 h2 {
-  color: var(--accent);
-  border-bottom: 2px solid var(--accent);
+  color: #1d4ed8;
+  border-bottom: 2px solid #1d4ed8;
   padding-bottom: 0.3rem;
 }
 
+article {
+  background: #fff;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+article h3 {
+  margin-top: 0;
+}
+
+.meta {
+  margin: 0.2rem 0 0.8rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
 figure {
-  margin: 1.5rem 0;
+  margin: 1rem 0 0;
   text-align: center;
 }
 
 figure img {
   max-width: 100%;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
 }
 
 figcaption {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  opacity: 0.75;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 0.4rem;
+}
+
+code {
+  background: #e5e7eb;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.9em;
 }
 
 a {
-  color: var(--accent);
-  font-weight: 600;
+  color: #1d4ed8;
 }
 
-.cards {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1rem;
-}
-
-.cards li {
-  background: var(--card);
-  padding: 1rem;
+/* ---------- Aside ---------- */
+aside {
+  background: #e8efff;
+  padding: 1rem 1.2rem;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #1d4ed8;
 }
 
-.cards h3 {
+aside h2 {
+  font-size: 1.1rem;
   margin-top: 0;
-  color: var(--accent);
 }
 
-button {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  padding: 0.7rem 1.4rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
+aside ul {
+  padding-left: 1.2rem;
 }
 
-button:hover {
-  opacity: 0.85;
-}
-
+/* ---------- Footer ---------- */
 .site-footer {
+  background: #0f172a;
+  color: #e5e7eb;
   text-align: center;
   padding: 1.5rem 1rem;
-  font-size: 0.9rem;
-  opacity: 0.7;
+}
+
+.site-footer p {
+  margin: 0.2rem 0;
+}
+
+.site-footer a {
+  color: #93c5fd;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .brand {
+    flex-direction: column;
+    text-align: center;
+  }
 }

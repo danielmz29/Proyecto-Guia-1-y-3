@@ -3,67 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="My first web project: an introduction to modern web development.">
-  <title>My First Web Project | Web Development</title>
+  <meta name="description" content="TechPulse: a technology news site built with semantic HTML5.">
+  <title>TechPulse | Technology News</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <header class="site-header">
-    <h1>Modern Web Development</h1>
-    <p class="subtitle">My first web project built with HTML5</p>
+  <header id="inicio" class="site-header">
+    <div class="brand">
+      <img src="img/logo.svg" alt="TechPulse logo: a chip with a pulse line" width="64" height="64">
+      <div>
+        <p class="site-name">TechPulse</p>
+        <h1>Your daily dose of technology news</h1>
+        <p class="tagline">Software, hardware and AI explained in a simple way.</p>
+      </div>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#inicio">Home</a></li>
+        <li><a href="#noticias">News</a></li>
+        <li><a href="#nosotros">About us</a></li>
+        <li><a href="#contacto">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <section class="intro">
-      <h2>What is web development?</h2>
-      <p>
-        Web development is the process of building and maintaining websites and
-        web applications. It combines three core technologies: <strong>HTML</strong>
-        to structure the content, <strong>CSS</strong> to style it, and
-        <strong>JavaScript</strong> to make it interactive.
-      </p>
+  <main class="layout">
+    <div class="content">
 
-      <figure>
-        <img src="img/web-dev.svg" alt="Illustration of a browser window showing HTML code">
-        <figcaption>A browser window rendering code written in HTML5.</figcaption>
-      </figure>
+      <section id="noticias">
+        <h2>Latest news</h2>
 
-      <p>
-        Learn more in the official documentation:
-        <a href="https://developer.mozilla.org/en-US/docs/Learn" target="_blank" rel="noopener noreferrer">MDN Web Docs - Learn Web Development</a>.
-      </p>
-    </section>
+        <article>
+          <h3>AI assistants are changing how developers write code</h3>
+          <p class="meta">
+            <time datetime="2026-10-15">October 15, 2026</time> &middot; By TechPulse Team
+          </p>
+          <p>
+            More developers now use AI tools to generate boilerplate, find bugs
+            and write tests. Experts agree that understanding the fundamentals,
+            like HTML, CSS and JavaScript, is still essential to review and
+            improve what the AI produces.
+          </p>
+          <figure>
+            <img src="img/news.svg" alt="Illustration of a laptop showing lines of code" width="480" height="270">
+            <figcaption>Developers combine their own knowledge with AI tools.</figcaption>
+          </figure>
+        </article>
 
-    <section class="tools">
-      <h2>My development toolkit</h2>
-      <ul class="cards">
-        <li>
-          <h3>Code editor</h3>
-          <p>Visual Studio Code is where I write and organize my code.</p>
-        </li>
-        <li>
-          <h3>Browser</h3>
-          <p>Chrome renders the page so I can check how it looks and behaves.</p>
-        </li>
-        <li>
-          <h3>Local server</h3>
-          <p>Live Server reloads the page automatically each time I save.</p>
-        </li>
-        <li>
-          <h3>Developer tools</h3>
-          <p>The F12 panel helps me inspect elements and find errors.</p>
-        </li>
+        <article>
+          <h3>Why semantic HTML5 matters for accessibility and SEO</h3>
+          <p class="meta">
+            <time datetime="2026-10-12">October 12, 2026</time> &middot; By TechPulse Team
+          </p>
+          <p>
+            Tags such as <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>
+            and <code>&lt;main&gt;</code> describe the role of each part of a
+            page. Screen readers and search engines use that meaning to
+            understand and rank the content better.
+          </p>
+        </article>
+      </section>
+
+      <section id="nosotros">
+        <h2>About us</h2>
+        <p>
+          TechPulse is a fictional technology news site created to practice
+          semantic HTML5. Our goal is to organize every piece of content
+          according to its function, so that the page is clear for people,
+          browsers and assistive technologies.
+        </p>
+        <p>
+          We cover three main topics: <strong>software development</strong>,
+          <strong>hardware</strong> and <strong>artificial intelligence</strong>.
+        </p>
+      </section>
+
+    </div>
+
+    <aside aria-label="Complementary information">
+      <h2>Featured links</h2>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer">MDN: HTML reference</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Semantics" target="_blank" rel="noopener noreferrer">What is semantics?</a></li>
+        <li><a href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">W3C HTML validator</a></li>
       </ul>
 
-      <button id="themeBtn" type="button">Toggle dark mode</button>
-    </section>
+      <h2>Tip of the day</h2>
+      <p>Use the most specific tag available before falling back to a generic <code>&lt;div&gt;</code>.</p>
+    </aside>
   </main>
 
-  <footer class="site-footer">
-    <p>&copy; 2026 My First Web Project</p>
+  <footer id="contacto" class="site-footer">
+    <p><strong>TechPulse</strong> &copy; 2026. All rights reserved.</p>
+    <p>Developed by Daniel Felipe Mojica Sanchez</p>
+    <p>Contact: <a href="mailto:contact@techpulse.example">contact@techpulse.example</a></p>
   </footer>
 
-  <script src="js/main.js"></script>
 </body>
 </html>
