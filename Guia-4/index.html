@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SIGDocs Lab</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon-192.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <svg class="svg-definitions" aria-hidden="true" focusable="false">
+      <symbol id="icon-eye" viewBox="0 0 24 24">
+        <path d="M2.1 12s3.6-6 9.9-6 9.9 6 9.9 6-3.6 6-9.9 6-9.9-6-9.9-6Z" />
+        <circle cx="12" cy="12" r="2.8" />
+      </symbol>
+      <symbol id="icon-eye-off" viewBox="0 0 24 24">
+        <path d="m3 3 18 18" />
+        <path d="M10.6 6.1A9.9 9.9 0 0 1 12 6c6.3 0 9.9 6 9.9 6a16 16 0 0 1-2.2 2.9" />
+        <path d="M6.6 6.6C3.7 8.5 2.1 12 2.1 12s3.6 6 9.9 6c1.4 0 2.7-.3 3.8-.8" />
+        <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12" />
+        <path d="m18 6-12 12" />
+      </symbol>
+    </svg>
+    <section id="loginView" class="login-shell">
+      <div class="login-visual">
+        <div class="login-brand-card">
+          <div class="login-brand-content">
+            <img
+              class="login-official-logotype"
+              src="./img/logotipo.png"
+              alt="SIGDocs Lab"
+            />
+            <h1>Sistema de Gestion Documental</h1>
+            <p class="login-brand-description">
+              Una experiencia institucional para organizar, consultar y
+              controlar la documentacion del sistema de calidad del laboratorio.
+            </p>
+            <div class="login-benefits" aria-label="Beneficios principales">
+              <span>Control documental</span>
+              <span>Gestion de vigencias</span>
+              <span>Acceso por roles</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-card">
+          <div class="auth-card-header">
+            <div class="auth-heading">
+              <img
+                class="auth-logo"
+                src="./img/isotipo.png"
+                alt="Isotipo de SIGDocs Lab"
+              />
+              <div>
+                <span
+                  class="environment-badge hidden"
+                  data-staging-indicator
+                  aria-label="Aplicacion conectada al entorno de pruebas"
+                >
+                  ENTORNO DE PRUEBAS
+                </span>
+                <p class="eyebrow">Acceso seguro</p>
+                <h2 id="authTitle">Iniciar sesión</h2>
+                <p id="authSubtitle" class="auth-subtitle">Ingresa a tu espacio documental</p>
+              </div>
+            </div>
+            <div class="auth-tabs single-option" aria-label="Opciones de acceso">
+              <button class="auth-tab active" type="button" data-auth-view="login">Iniciar sesion</button>
+              <button id="createAccountTab" class="auth-tab hidden" type="button" data-auth-view="register">Crear cuenta</button>
+            </div>
+          </div>
+
+          <form id="loginForm" class="auth-form" autocomplete="on">
+            <label>
+              Email
+              <input
+                id="loginEmail"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+              />
+            </label>
+            <div class="form-field">
+              <label for="loginPassword">Contrasena</label>
+              <span class="password-control">
+                <input
+                  id="loginPassword"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                />
+                <button
+                  class="password-toggle"
+                  type="button"
+                  data-password-toggle="loginPassword"
+                  aria-controls="loginPassword"
+                  aria-label="Mostrar contrasena"
+                  aria-pressed="false"
+                  title="Mostrar contrasena"
+                >
+                  <svg aria-hidden="true" focusable="false"><use href="#icon-eye"></use></svg>
+                </button>
+              </span>
+            </div>
+            <button class="btn primary full" type="submit">Iniciar sesion</button>
+            <div class="auth-support-links">
+              <button id="forgotPasswordLink" class="text-button hidden" type="button" data-public-auth-view="forgot">¿Olvidaste tu contrasena?</button>
+              <button id="pendingVerificationLink" class="text-button hidden" type="button" data-public-auth-view="pending">¿Aun no has verificado tu cuenta?</button>
+            </div>
+            <p id="loginMessage" class="form-hint" role="status"></p>
+            <p id="loginError" class="form-error" role="alert"></p>
+          </form>
+
+          <form id="registerForm" class="auth-form hidden" autocomplete="on">
+            <label>
+              Nombre del responsable
+              <input name="nombre" type="text" placeholder="Nombre completo" autocomplete="name" required />
+            </label>
+            <label>
+              Correo electronico
+              <input name="email" type="email" placeholder="usuario@laboratorio.com" autocomplete="email" required />
+            </label>
+            <div class="turnstile-slot hidden" data-turnstile-context="registration"></div>
+            <button class="btn primary full" type="submit">Continuar</button>
+            <button class="text-button" type="button" data-public-auth-view="login">Volver a iniciar sesion</button>
+            <p id="registerMessage" class="form-hint" role="status">Crea una nueva cuenta de SIGDocs Lab para un nuevo laboratorio.</p>
+          </form>
+
+          <form id="verificationForm" class="auth-form hidden" autocomplete="one-time-code">
+            <label>Codigo de verificacion
+              <input id="verificationCode" name="code" class="verification-code-input" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required />
+            </label>
+            <button class="btn primary full" type="submit">Verificar</button>
+            <button id="resendCodeButton" class="text-button" type="button">Reenviar codigo</button>
+            <div class="turnstile-slot hidden" data-turnstile-context="resend"></div>
+            <span id="resendCountdown" class="input-hint" aria-live="polite"></span>
+            <p id="verificationMessage" class="form-hint" role="status"></p>
+          </form>
+
+          <form id="completionForm" class="auth-form hidden" autocomplete="on">
+            <label>Nombre del laboratorio
+              <input name="nombre_laboratorio" type="text" autocomplete="organization" required />
+            </label>
+            <label>Descripcion corta
+              <input name="descripcion_corta" type="text" autocomplete="off" placeholder="Sistema de Gestion de Calidad" />
+            </label>
+            <div class="form-field"><label for="completionPassword">Crear contrasena</label><span class="password-control">
+              <input id="completionPassword" name="password" type="password" autocomplete="new-password" required />
+              <button class="password-toggle" type="button" data-password-toggle="completionPassword" aria-controls="completionPassword" aria-label="Mostrar contrasena" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-eye"></use></svg></button>
+            </span><span class="input-hint">Minimo 8 caracteres, una mayuscula, una minuscula, un numero y un caracter especial.</span></div>
+            <div class="form-field"><label for="completionPasswordConfirmation">Confirmar contrasena</label><span class="password-control">
+              <input id="completionPasswordConfirmation" name="confirm_password" type="password" autocomplete="new-password" required />
+              <button class="password-toggle" type="button" data-password-toggle="completionPasswordConfirmation" aria-controls="completionPasswordConfirmation" aria-label="Mostrar contrasena de confirmacion" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-eye"></use></svg></button>
+            </span></div>
+            <button class="btn primary full" type="submit">Crear laboratorio y cuenta</button>
+            <p id="completionMessage" class="form-hint" role="status"></p>
+          </form>
+
+          <section id="registrationSuccess" class="auth-form auth-success hidden" aria-live="polite">
+            <h3>Tu cuenta fue creada correctamente.</h3>
+            <p>Ya puedes iniciar sesion en SIGDocs Lab.</p>
+            <button class="btn primary full" type="button" data-public-auth-view="login">Ir a iniciar sesion</button>
+          </section>
+
+          <form id="pendingVerificationForm" class="auth-form hidden" autocomplete="on">
+            <label>Correo electronico<input name="email" type="email" autocomplete="email" required /></label>
+            <div class="turnstile-slot hidden" data-turnstile-context="pending"></div>
+            <button class="btn primary full" type="submit">Solicitar codigo</button>
+            <button class="text-button" type="button" data-public-auth-view="login">Volver</button>
+            <p id="pendingVerificationMessage" class="form-hint" role="status"></p>
+          </form>
+
+          <form id="forgotPasswordForm" class="auth-form hidden" autocomplete="on">
+            <label>Correo electronico<input name="email" type="email" autocomplete="email" required /></label>
+            <div class="turnstile-slot hidden" data-turnstile-context="forgot"></div>
+            <button class="btn primary full" type="submit">Enviar instrucciones</button>
+            <button class="text-button" type="button" data-public-auth-view="login">Volver</button>
+            <p id="forgotPasswordMessage" class="form-hint" role="status"></p>
+          </form>
+
+          <form id="resetPasswordForm" class="auth-form hidden" autocomplete="on">
+            <div class="form-field"><label for="resetPassword">Nueva contrasena</label><span class="password-control">
+              <input id="resetPassword" name="new_password" type="password" autocomplete="new-password" required />
+              <button class="password-toggle" type="button" data-password-toggle="resetPassword" aria-controls="resetPassword" aria-label="Mostrar contrasena" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-eye"></use></svg></button>
+            </span><span class="input-hint">Minimo 8 caracteres, una mayuscula, una minuscula, un numero y un caracter especial.</span></div>
+            <div class="form-field"><label for="resetPasswordConfirmation">Confirmar contrasena</label><span class="password-control">
+              <input id="resetPasswordConfirmation" name="confirm_password" type="password" autocomplete="new-password" required />
+              <button class="password-toggle" type="button" data-password-toggle="resetPasswordConfirmation" aria-controls="resetPasswordConfirmation" aria-label="Mostrar contrasena de confirmacion" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-eye"></use></svg></button>
+            </span></div>
+            <button class="btn primary full" type="submit">Actualizar contrasena</button>
+            <p id="resetPasswordMessage" class="form-hint" role="status"></p>
+          </form>
+        </div>
+      </div>
+      <footer class="site-footer site-footer--login">
+        <p>&copy; 2026 SIGDocs Lab &middot; Sistema de gesti&oacute;n documental para laboratorios</p>
+      </footer>
+    </section>
+
+    <section
+      id="sessionLoadingView"
+      class="session-loading-view hidden"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      <img class="session-loading-logo" src="./img/isotipo.png" alt="" />
+      <span class="session-loading-spinner" aria-hidden="true"></span>
+      <p>Cargando tu espacio documental</p>
+    </section>
+
+    <section id="appView" class="app-shell hidden">
+      <aside id="mainSidebar" class="sidebar" aria-label="Menu de la aplicacion">
+        <div class="sidebar-mobile-heading">
+          <strong>Navegacion</strong>
+          <button id="mobileMenuCloseButton" class="mobile-menu-close" type="button" aria-label="Cerrar menu">
+            &times;
+          </button>
+        </div>
+        <div class="sidebar-brand" data-branding-ready="true">
+          <div class="logo-slot small">
+            <span id="sidebarLogoText">SL</span>
+            <img id="sidebarLogoImage" class="brand-logo hidden" src="" alt="" />
+          </div>
+          <div class="brand-copy">
+            <strong id="sidebarBrandName">SIGDocs Lab</strong>
+            <span id="sidebarBrandSubtitle">MVP documental</span>
+          </div>
+        </div>
+        <button id="openBrandEditorButton" class="brand-edit-button admin-only" type="button">
+          Editar marca
+        </button>
+
+        <nav class="nav-list" aria-label="Navegacion principal">
+          <button class="nav-button active" type="button" data-section="dashboardSection">Panel</button>
+          <button class="nav-button" type="button" data-section="processMapSection">Mapa de procesos</button>
+          <button class="nav-button" type="button" data-section="subprocessSection">Subprocesos</button>
+          <button class="nav-button admin-only" type="button" data-section="uploadSection">Carga documental</button>
+          <button class="nav-button" type="button" data-section="documentsSection">Listado maestro</button>
+          <button class="nav-button admin-only" type="button" data-section="usersSection">Usuarios</button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="sidebar-session">
+            <span id="userName">Usuario</span>
+            <strong id="userRole">Rol</strong>
+          </div>
+          <button id="logoutButton" class="btn ghost full" type="button">Cerrar sesion</button>
+        </div>
+      </aside>
+      <button
+        id="mobileMenuBackdrop"
+        class="sidebar-backdrop"
+        type="button"
+        aria-label="Cerrar menu"
+        tabindex="-1"
+      ></button>
+
+      <main class="main-content">
+        <header class="mobile-app-header">
+          <button
+            id="mobileMenuButton"
+            class="mobile-menu-button"
+            type="button"
+            aria-controls="mainSidebar"
+            aria-expanded="false"
+            aria-label="Abrir menu"
+          >
+            <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span>Menu</span>
+          </button>
+          <div class="mobile-session-summary">
+            <strong id="mobileLabName">Laboratorio</strong>
+            <span><span id="mobileUserName">Usuario</span> · <b id="mobileUserRole">Rol</b></span>
+          </div>
+        </header>
+
+        <header class="topbar">
+          <div class="topbar-copy">
+            <p class="eyebrow">SIGDocs Lab</p>
+            <span
+              class="environment-badge hidden"
+              data-staging-indicator
+              aria-label="Aplicacion conectada al entorno de pruebas"
+            >
+              ENTORNO DE PRUEBAS
+            </span>
+            <h2>Sistema de Gestión de Calidad</h2>
+            <span id="labName">Laboratorio</span>
+          </div>
+          <button class="btn secondary" id="refreshAllButton" type="button">Actualizar datos</button>
+        </header>
+
+        <div id="toast" class="toast hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+        <div id="operationAnnouncements" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+        <div id="brandEditorOverlay" class="brand-editor-overlay hidden" aria-hidden="true">
+          <div class="brand-editor-panel" role="dialog" aria-modal="true" aria-labelledby="brandEditorTitle">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Branding</p>
+                <h3 id="brandEditorTitle">Marca del laboratorio</h3>
+              </div>
+              <button id="closeBrandEditorButton" class="mini-button" type="button">Cerrar</button>
+            </div>
+            <form id="brandEditorForm" class="brand-editor-form" autocomplete="off">
+              <label>
+                Nombre mostrado
+                <input id="brandNameInput" name="name" type="text" placeholder="Nombre del laboratorio" autocomplete="organization" required />
+              </label>
+              <label>
+                Subtitulo
+                <input id="brandSubtitleInput" name="subtitle" type="text" placeholder="Descripcion corta" autocomplete="off" />
+              </label>
+              <label>
+                Iniciales
+                <input id="brandLogoTextInput" name="logoText" type="text" maxlength="4" placeholder="SL" autocomplete="off" />
+              </label>
+              <label>
+                Logo por URL
+                <input id="brandLogoUrlInput" name="logoUrl" type="url" placeholder="https://..." autocomplete="url" />
+              </label>
+              <label class="span-two">
+                Cargar logo local
+                <input
+                  id="brandLogoFileInput"
+                  name="logoFile"
+                  type="file"
+                  accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+                  autocomplete="off"
+                />
+              </label>
+              <div class="brand-logo-preview span-two" aria-live="polite">
+                <div class="brand-logo-preview-frame" aria-hidden="true">
+                  <img id="brandLogoPreviewImage" class="hidden" alt="" />
+                  <span id="brandLogoPreviewText">SL</span>
+                </div>
+                <div>
+                  <strong>Vista previa</strong>
+                  <span>PNG o JPEG, maximo 2 MB.</span>
+                </div>
+              </div>
+              <div class="brand-editor-actions span-two">
+                <button id="brandSaveButton" class="btn primary" type="submit">Guardar marca</button>
+                <button id="resetBrandingButton" class="btn ghost" type="button">Quitar logo</button>
+              </div>
+              <p id="brandSaveStatus" class="operation-status span-two" role="status" aria-live="polite"></p>
+              <p class="form-hint span-two">
+                El logo se valida y almacena de forma privada; no se publica una URL permanente.
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <section id="dashboardSection" class="content-section active">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Vista general</p>
+              <h3>Panel principal</h3>
+            </div>
+          </div>
+          <div class="metric-grid">
+            <article class="metric-card">
+              <span>Documentos</span>
+              <strong id="totalDocs">0</strong>
+            </article>
+            <article class="metric-card success">
+              <span>Vigentes</span>
+              <strong id="activeDocs">0</strong>
+            </article>
+            <article class="metric-card danger">
+              <span>Obsoletos</span>
+              <strong id="obsoleteDocs">0</strong>
+            </article>
+          </div>
+          <div class="quick-grid">
+            <button class="quick-action" type="button" data-section="processMapSection">Ver mapa de procesos</button>
+            <button class="quick-action admin-only" type="button" data-section="uploadSection">Cargar documento</button>
+            <button class="quick-action" type="button" data-section="documentsSection">Abrir listado maestro</button>
+            <button class="quick-action admin-only" type="button" data-section="subprocessSection">Gestionar subprocesos</button>
+          </div>
+        </section>
+
+        <section id="processMapSection" class="content-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Procesos fijos</p>
+              <h3>Mapa de procesos</h3>
+            </div>
+          </div>
+          <div id="processMap" class="process-grid"></div>
+        </section>
+
+        <section id="subprocessSection" class="content-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Organizacion</p>
+              <h3>Gestion de subprocesos</h3>
+            </div>
+          </div>
+          <form id="subprocessForm" class="toolbar-form admin-only" autocomplete="off">
+            <select name="tipo_proceso" autocomplete="off" required>
+              <option value="Estrategico">Estrategico</option>
+              <option value="Misional">Misional</option>
+              <option value="Apoyo">Apoyo</option>
+            </select>
+            <input name="nombre_subproceso" type="text" placeholder="Nombre del subproceso" autocomplete="off" required />
+            <button class="btn primary" type="submit">Crear subproceso</button>
+          </form>
+          <div class="table-shell">
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>Proceso</th>
+                  <th>Subproceso</th>
+                  <th>Estado</th>
+                  <th class="admin-only">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="subprocessTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="uploadSection" class="content-section admin-only">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Carga documental</p>
+              <h3>Selecciona tus documentos</h3>
+            </div>
+          </div>
+          <form id="documentForm" class="document-form document-upload-flow" autocomplete="off" aria-busy="false" novalidate>
+            <label id="documentDropZone" class="document-drop-zone">
+              Archivos
+              <input
+                name="archivo"
+                type="file"
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.csv,.txt,.png,.jpg,.jpeg"
+                autocomplete="off"
+                multiple
+              />
+              <span class="input-hint">
+                Selecciona o arrastra de 1 a 50 archivos.
+              </span>
+              <strong id="bulkSelectionCounter" class="bulk-selection-counter">0 de 50 archivos seleccionados</strong>
+            </label>
+            <section id="bulkUploadPanel" class="bulk-upload-panel hidden" aria-labelledby="bulkUploadTitle">
+              <div class="bulk-upload-heading">
+                <div>
+                  <h4 id="bulkUploadTitle">Revision documental</h4>
+                  <p id="bulkUploadSummary">Sin archivos seleccionados.</p>
+                </div>
+                <div class="bulk-heading-actions">
+                  <button id="aiSuggestButton" class="btn secondary" type="button" disabled aria-disabled="true">
+                    Clasificación con IA — Próximamente
+                  </button>
+                  <button id="undoAiSuggestionsButton" class="btn ghost hidden" type="button">Deshacer IA</button>
+                  <button id="refreshBulkCatalogsButton" class="btn ghost" type="button">Actualizar catalogos</button>
+                </div>
+              </div>
+              <p id="aiFeatureNotice" class="bulk-ai-privacy">
+                Función opcional disponible en una futura versión.
+              </p>
+              <div id="bulkCommonControls" class="bulk-common-controls hidden">
+                <label>
+                  Tipo documental comun
+                  <select id="bulkCommonDocumentType" autocomplete="off">
+                    <option value="">Seleccionar</option>
+                  </select>
+                </label>
+                <label>
+                  Proceso comun
+                  <select id="documentProcessSelect" autocomplete="off">
+                    <option value="">Seleccionar</option>
+                    <option value="Estrategico">Estrategico</option>
+                    <option value="Misional">Misional</option>
+                    <option value="Apoyo">Apoyo</option>
+                  </select>
+                </label>
+                <label>
+                  Subproceso comun
+                  <select id="documentSubprocessSelect" autocomplete="off">
+                    <option value="">Selecciona un proceso</option>
+                  </select>
+                </label>
+                <label>
+                  Version comun
+                  <input id="bulkCommonVersion" type="text" placeholder="Ej. 1.0" autocomplete="off" />
+                </label>
+                <label>
+                  Vigencia comun
+                  <input id="bulkCommonEffectiveDate" type="date" autocomplete="off" />
+                </label>
+                <label>
+                  Revision comun
+                  <input id="bulkCommonReviewDate" type="date" autocomplete="off" />
+                </label>
+                <label class="bulk-common-observations">
+                  Observaciones comunes
+                  <textarea id="bulkCommonObservations" rows="2" maxlength="1000" placeholder="Opcional" autocomplete="off"></textarea>
+                </label>
+                <button id="applyCommonMetadataButton" class="btn secondary" type="button">
+                  Aplicar datos comunes al lote
+                </button>
+              </div>
+              <div class="bulk-overall-progress">
+                <div>
+                  <span>Documentos procesados</span>
+                  <strong id="bulkUploadProgressLabel">0 de 0</strong>
+                </div>
+                <progress id="bulkUploadProgress" max="1" value="0">0 de 0</progress>
+              </div>
+              <p class="bulk-upload-guidance">
+                Revisa cada fila antes de cargar. El tipo documental confirmado quedara guardado en la ficha del documento.
+              </p>
+              <div id="bulkUploadList" class="bulk-upload-list"></div>
+              <div class="bulk-footer-actions">
+                <button id="stopBulkUploadButton" class="btn danger hidden" type="button">Detener lote</button>
+                <button id="retryFailedUploadsButton" class="btn secondary hidden" type="button">Reintentar fallidos</button>
+                <button id="clearCompletedUploadsButton" class="btn ghost hidden" type="button">Limpiar completados</button>
+              </div>
+            </section>
+            <button id="documentSubmitButton" class="btn primary" type="submit">Cargar documentos</button>
+            <p
+              id="documentUploadStatus"
+              class="operation-status"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            ></p>
+          </form>
+        </section>
+
+        <section id="documentsSection" class="content-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Control documental</p>
+              <h3>Listado maestro de documentos</h3>
+            </div>
+            <button id="exportMasterListButton" class="btn secondary" type="button">
+              Exportar listado maestro
+            </button>
+          </div>
+          <form id="filtersForm" class="filters-bar" autocomplete="off">
+            <input name="codigo" type="search" placeholder="Codigo" autocomplete="off" />
+            <input name="nombre" type="search" placeholder="Nombre" autocomplete="off" />
+            <select name="tipo_proceso" autocomplete="off">
+              <option value="">Todos los procesos</option>
+              <option value="Estrategico">Estrategico</option>
+              <option value="Misional">Misional</option>
+              <option value="Apoyo">Apoyo</option>
+            </select>
+            <select id="documentTypeFilter" name="tipo_documental" autocomplete="off">
+              <option value="">Todos los tipos</option>
+            </select>
+            <select id="filterSubprocessSelect" name="subproceso_id" autocomplete="off">
+              <option value="">Todos los subprocesos</option>
+            </select>
+            <select name="estado" autocomplete="off">
+              <option value="">Todos los estados</option>
+              <option value="vigente">Vigentes</option>
+              <option value="obsoleto">Obsoletos</option>
+            </select>
+            <button class="btn secondary" type="submit">Consultar</button>
+            <button class="btn ghost" type="button" id="viewAllDocumentsButton">Ver todos los documentos</button>
+            <button class="btn ghost" type="button" id="clearFiltersButton">Limpiar</button>
+          </form>
+          <div class="table-shell">
+            <table class="responsive-table documents-table">
+              <thead>
+                <tr>
+                  <th>Codigo</th>
+                  <th>Documento</th>
+                  <th>Tipo</th>
+                  <th>Proceso</th>
+                  <th>Subproceso</th>
+                  <th>Version</th>
+                  <th>Vigencia</th>
+                  <th>Revisión</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="documentsTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="usersSection" class="content-section admin-only">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Accesos</p>
+              <h3>Usuarios del laboratorio</h3>
+            </div>
+          </div>
+          <form id="userForm" class="toolbar-form" autocomplete="on">
+            <input name="nombre" type="text" placeholder="Nombre" autocomplete="name" required />
+            <input name="email" type="email" placeholder="email@laboratorio.com" autocomplete="email" required />
+            <span class="password-control toolbar-password-control">
+              <input id="newUserPassword" name="password" type="password" placeholder="Contrasena inicial" autocomplete="new-password" aria-label="Contrasena inicial" required />
+              <button
+                class="password-toggle"
+                type="button"
+                data-password-toggle="newUserPassword"
+                aria-controls="newUserPassword"
+                aria-label="Mostrar contrasena inicial"
+                aria-pressed="false"
+                title="Mostrar contrasena inicial"
+              >
+                <svg aria-hidden="true" focusable="false"><use href="#icon-eye"></use></svg>
+              </button>
+            </span>
+            <select name="rol" autocomplete="off" required>
+              <option value="consulta">Consulta</option>
+              <option value="admin">Administrador</option>
+            </select>
+            <p class="form-hint password-requirements full-row">
+              La contrasena debe tener minimo 8 caracteres, una mayuscula, una minuscula, un numero y un caracter especial.
+            </p>
+            <button class="btn primary" type="submit">Crear usuario</button>
+          </form>
+          <div class="table-shell">
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+        <footer class="site-footer">
+          <p>&copy; 2026 SIGDocs Lab &middot; Sistema de gesti&oacute;n documental para laboratorios</p>
+        </footer>
+      </main>
+    </section>
+
+    <div id="actionModalOverlay" class="brand-editor-overlay hidden" role="presentation">
+      <section class="brand-editor-panel action-modal" role="dialog" aria-modal="true" aria-labelledby="actionModalTitle">
+        <div class="brand-editor-heading">
+          <div>
+            <p class="eyebrow">Acción administrativa</p>
+            <h3 id="actionModalTitle">Confirmar acción</h3>
+          </div>
+          <button id="closeActionModalButton" class="icon-button" type="button" aria-label="Cerrar modal" title="Cerrar">
+            <svg aria-hidden="true" focusable="false"><use href="#icon-close"></use></svg>
+          </button>
+        </div>
+        <div id="actionModalBody" class="action-modal-body"></div>
+        <div class="brand-editor-actions">
+          <button id="cancelActionModalButton" class="btn ghost" type="button">Cancelar</button>
+          <button id="confirmActionModalButton" class="btn danger" type="button">Confirmar</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/auth_client.js"></script>
+    <script src="./js/session_lifecycle.js"></script>
+    <script src="./js/bulk_upload.js"></script>
+    <script src="./js/master_list_export.js"></script>
+    <script src="./js/public_account_startup.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
