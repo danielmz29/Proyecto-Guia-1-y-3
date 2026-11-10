@@ -25,3 +25,5 @@ Guia-4/
 Esta carpeta contiene solo el frontend de la aplicación. Los datos se obtienen de un backend
 privado, así que al abrir `index.html` localmente se ve la pantalla de inicio de sesión; las
 vistas internas se muestran en las evidencias de la documentación y en el video.
+
+**Video de validación:** https://youtu.be/yAq75mUrGmE
